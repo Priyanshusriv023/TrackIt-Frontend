@@ -184,12 +184,8 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [filter, setFilter] = useState("All");
-
-    useEffect(() => {
-        fetchApplications();
-    }, []);
-
-    const fetchApplications = async () => {
+ 
+     const fetchApplications = async () => {
         try {
             const res = await axiosInstance.get("/applications");
             setApplications(res.data.data);
@@ -199,6 +195,15 @@ export default function Dashboard() {
             setLoading(false);
         }
     };
+    
+
+    useEffect(() => {
+        fetchApplications();
+    }, []);
+
+   
+
+    
 
     const handleLogout = async () => {
         await logout();
@@ -221,7 +226,7 @@ export default function Dashboard() {
     const rejected = applications.filter(a => a.currentStatus === "Rejected").length;
     const inProgress = applications.filter(a => !["Offer", "Rejected"].includes(a.currentStatus)).length;
     const successRate = total > 0 ? ((offers / total) * 100).toFixed(1) : 0;
-
+    
     // filter
     const filtered = filter === "All" ? applications : applications.filter(a => a.currentStatus === filter);
 
@@ -236,12 +241,22 @@ export default function Dashboard() {
                         <span className="text-gray-500 text-sm hidden sm:block">
                             {user?.username || user?.email}
                         </span>
+
+                        <button
+                            onClick={() => navigate("/analytics")}
+                            className="text-gray-400 hover:text-gray-200 text-sm transition-colors"
+                        >
+                            Analytics
+                        </button>
+
+                        
                         <button
                             onClick={handleLogout}
                             className="text-gray-400 hover:text-gray-200 text-sm transition-colors"
                         >
                             Logout
                         </button>
+                        
                     </div>
                 </div>
             </nav>
