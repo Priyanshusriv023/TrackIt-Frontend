@@ -130,6 +130,7 @@ export default function Analytics() {
                                             outerRadius={100}
                                             paddingAngle={3}
                                             dataKey="value"
+                                            
                                         >
                                             {pieData.map((entry, index) => (
                                                 <Cell
@@ -146,11 +147,13 @@ export default function Analytics() {
                                                 color: "#f3f4f6"
                                             }}
                                         />
+                                      
+                                       
                                     </PieChart>
                                 </ResponsiveContainer>
 
                                 {/* Legend */}
-                                <div className="grid grid-cols-2 gap-2 mt-4">
+                                 <div className="grid grid-cols-2 gap-2 mt-4">
                                     {pieData.map((entry) => (
                                         <div key={entry.name} className="flex items-center gap-2">
                                             <div
@@ -162,9 +165,11 @@ export default function Analytics() {
                                         </div>
                                     ))}
                                 </div>
+                                
                             </>
                         )}
                     </div>
+                               
 
                     {/* Bar Chart — Monthly Trend */}
                     <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
@@ -193,6 +198,7 @@ export default function Analytics() {
                                             color: "#f3f4f6"
                                         }}
                                     />
+                                    
                                     <Bar dataKey="count" fill="#6366f1" radius={[4, 4, 0, 0]} name="Applications" />
                                 </BarChart>
                             </ResponsiveContainer>

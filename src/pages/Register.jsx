@@ -24,9 +24,20 @@ function Register() {
         try {
             await axiosInstance.post("/auth/register", formData);
             setSuccess(true);
-        } catch (err) {
-            setError(err.response?.data?.message || "Registration failed");
-        } finally {
+        } 
+        catch (err) {
+           const errors = err.response?.data?.errors;
+           if (errors && errors.length > 0) {
+        
+        const firstError = Object.values(errors[0])[0];
+        setError(firstError);
+    } 
+    else {
+        setError(err.response?.data?.message || "Registration failed");
+    }
+          
+        } 
+    finally {
             setLoading(false);
         }
     };
