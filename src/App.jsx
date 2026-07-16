@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import { useAuth } from "./context/authContext";
 import ApplicationDetail from "./pages/ApplicationDetails.jsx";
 import Analytics from "./pages/Analytics.jsx"
+import VerifyEmail from "./pages/VerifyEmail.jsx"
 
 
 
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                 <Route path="/applications/:appId" element={<ProtectedRoute><ApplicationDetail /></ProtectedRoute>} />
                 <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+                <Route path="/verify-email/:token" element={<VerifyEmail />} />
                 <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
         </BrowserRouter>
